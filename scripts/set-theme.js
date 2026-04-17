@@ -1,6 +1,3 @@
-/* Этот скрипт использует имена классов theme-menu__button, theme-dark, theme-light и theme-auto;
-еще атрибуты disabled и data-theme. Поэтому их нельзя менять в HTML. */
-
 function changeTheme(theme) {
   document.documentElement.className = '';
   document.documentElement.classList.add(`theme-${theme}`);
@@ -28,24 +25,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if ([...root.classList].includes('theme-light')) {
+  // Логика кнопок темы
+  if (root.classList.contains('theme-light')) {
     setDisabled('light');
-  } else if ([...root.classList].includes('theme-dark')) {
+  } else if (root.classList.contains('theme-dark')) {
     setDisabled('dark');
   } else {
     setDisabled('auto');
   }
 
   themeButtons.forEach((button) => {
-    button.onclick = () => {
-      changeTheme(button.getAttribute('data-theme'));
-      setDisabled(button.getAttribute('data-theme'));
-    };
+    button.addEventListener('click', () => {
+      const theme = button.getAttribute('data-theme');
+      changeTheme(theme);
+      setDisabled(theme);
+    });
   });
-});
-const modal = document.querySelector('#modal');
-const saveButton = document.querySelector('.save__button');
 
-saveButton.addEventListener('click', () => {
-  modal.showModal();
+  // --- ЛОГИКА МОДАЛЬНОГО ОКНА (ТЕПЕРЬ ВНУТРИ DOMContentLoaded) ---
+  const modal = document.querySelector('#modal');
+  const saveButton = document.querySelector('.save__button');
+  const closeButton = document.querySelector('.popup__close-btn');
+
+  if (saveButton && modal) {
+    saveButton.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      modal.showModal();
+    });
+  }
+
+  if (closeButton && modal) {
+    closeButton.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      modal.close();
+    });
+  }
 });
