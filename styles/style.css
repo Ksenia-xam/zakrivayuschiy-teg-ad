@@ -120,9 +120,9 @@
 }
 
 .image-source {
-  display: block; 
+  display: block;
   inline-size: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: right;
 }
@@ -151,9 +151,14 @@
   filter: blur(8px);
 }
 
+.brightness {
+  filter: brightness(1.5);
+}
+
 .mult {
   filter: hue-rotate(60deg) contrast(0.5) brightness(1.4);
 }
+
 
 .watermark {
   position: absolute;
