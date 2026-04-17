@@ -43,3 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
 });
+const modal = document.querySelector('#modal');
+const saveButton = document.querySelector('.save__button');
+
+saveButton.addEventListener('click', () => {
+  modal.showModal();
+});
