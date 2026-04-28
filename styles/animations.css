@@ -1,91 +1,157 @@
-@keyframes arrow {
-  from {
-    inset-inline-start: -16px;
-  }
+/* Опишите в этом файле все keyframes для проекта и стили анимаций иконки Like.
 
-  to {
-    inset-inline-start: -12px;
-  }
-}
+Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
+✦ like-icon — для svg-иконки анимированного сердца
+✦ card__like-button — для кнопки Like рядом с иконкой
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
+✦ button__text — для обозначения текстового элемента внутри кнопки
 
-@keyframes big-heart {
-  from {
-    transform: scale(1);
-  }
-
-  to {
-    transform: scale(1.5);
-  }
-}
-
-@keyframes sparks {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.theme-menu__button {
-  transition: opacity 0.5s ease;
-}
+*/
 
 .theme-menu__button:disabled::before {
-  animation: arrow 0.5s ease-in-out infinite alternate;
-}
-
-.theme-menu__button::after {
-  transform: scalex(0);
-  transform-origin: left;
-  transition: transform 0.3s;
-}
-
-.theme-menu__button:focus-visible::after {
-  transform: scalex(1);
-}
-
-.btn-shad {
-  transition: box-shadow 0.3s ease;
-}
-
-.card__icon-button {
-  transition: border 0.3s ease;
-}
-
-.like-icon:hover .core {
-  transition-delay: 0.03s;
-}
-
-.like-icon:hover .main-body,
-.like-icon:active .main-body {
-  transition-delay: 0.05s;
-}
-
-.like-icon .core,
-.like-icon .main-body,
-.like-icon:active .core {
-  transition: fill 0.3 linear;
-}
-
-.like-icon .contour {
-  transition: fill 0.1s linear;
-}
-
-.like-icon.is-liked .main-body {
-  transition-delay: 0.05s;
-}
-
-.like-icon.is-liked .contour {
-  transition-delay: 0.06s;
-}
-
-.like-icon.is-liked .heart {
-  transform-origin: center;
-  animation: big-heart 0.3s ease-in 0.1s alternate;
-}
-
-.like-icon.is-liked .sparks {
-  animation: sparks 0.3s ease-in 0.3s alternate;
-}
+    content: '▶';
+    position: absolute;
+    animation: path 0.5s ease-in-out infinite alternate;
+    top: 0;
+    left: 0;
+  }
+  
+  .theme-menu__button:focus-visible {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+  
+  .theme-menu__button::after {
+    display: block;
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width .3s;
+  }
+  
+  .theme-menu__button:focus-visible::after {
+    width: 100%;
+  }
+  
+  .theme-menu__button:hover, .theme-menu__button:disabled {
+    position: relative;
+    opacity: 0.6;
+    transition: opacity 300ms ease;
+  }
+  
+  .theme-menu__button:disabled {
+    pointer-events: none;
+  }
+  
+  .like-icon {
+    fill: var(--bg-color);
+    inline-size: 39px;
+    block-size: 36px;
+  }
+  
+  .like-icon .heart {
+    transition: fill .1s;
+    transform-origin: center center;
+  }
+  
+  /* Сердце */
+  .like-icon .main-body {
+    fill: var(--bg-color);
+    transition: fill .3s;
+  }
+  
+  .card__icon-button:hover .main-body {
+    fill: var(--accent-color);
+    transition: fill .5s 3ms;
+  }
+  
+  .card__icon-button:active .main-body {
+    fill: var(--heart-color);
+    transition: fill .3s 6ms;
+  }
+  
+  .like-icon.is-liked .main-body {
+    fill: var(--heart-color);
+    transition: fill .3s 3ms;
+  }
+  
+  
+  /* Плюс */
+  .like-icon .core {
+    fill: var(--bg-color);
+    transition: fill .3s 5ms;
+  }
+  
+  .card__icon-button:hover .core {
+    fill: var(--accent-color);
+    transition: fill .3s 3ms;
+  }
+  
+  .card__icon-button:active .core {
+    fill: var(--heart-color);
+    transition: fill .3s;
+  }
+  
+  .like-icon.is-liked .core {
+    fill: var(--heart-color);
+    transition: fill .3s;
+  }
+  
+  /* Контур */
+  .like-icon .contour {
+    fill: var(--accent-color);
+  }
+  
+  .like-icon.is-liked .contour {
+    fill: var(--heart-color);
+    transition: fill .3s 5ms;
+  }
+  
+  
+  /* Искры */
+  .like-icon .sparks {
+    opacity: 0;
+    fill: var(--heart-color);
+  }
+  
+  .like-icon.is-liked .sparks {
+    animation: sparks .3s ease;
+  }
+  
+  .like-icon.is-liked .heart {
+    animation: scale .3s ease;
+  }
+  
+  @keyframes scale {
+    from {
+      scale: 0;
+    }
+  
+    to {
+      scale: 1;
+    }
+  }
+  
+  @keyframes sparks {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+  @keyframes path {
+    from {
+      left: 8px;
+    }
+  
+    to {
+      left: 4px;
+    }
+  }
