@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Логика кнопок темы
+  // тема
   if (root.classList.contains('theme-light')) {
     setDisabled('light');
   } else if (root.classList.contains('theme-dark')) {
@@ -42,16 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- ЛОГИКА МОДАЛЬНОГО ОКНА (ТЕПЕРЬ ВНУТРИ DOMContentLoaded) ---
+  // --- МОДАЛКА (ПРОСТО ДОБАВИЛ СЮДА) ---
   const modal = document.querySelector('#modal');
   const saveButton = document.querySelector('.save__button');
   const closeButton = document.querySelector('.popup__close-btn');
 
   if (saveButton && modal) {
-    saveButton.addEventListener('click', (evt) => {
-      evt.preventDefault();
+    saveButton.addEventListener('click', () => {
       modal.showModal();
     });
   }
 
+  if (closeButton && modal) {
+    closeButton.addEventListener('click', () => {
+      modal.close();
+    });
+  }
 });
