@@ -54,10 +54,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (closeButton && modal) {
-    closeButton.addEventListener('click', (evt) => {
-      evt.preventDefault();
-      modal.close();
-    });
-  }
 });
