@@ -180,7 +180,6 @@
 ) {
   .watermark {
     -webkit-text-stroke: 1px var(--color-bg, rgba(255, 255, 255, 1));
-    text-stroke: 1px var(--color-bg, rgba(255, 255, 255, 1));
     text-shadow: none;
   }
 }

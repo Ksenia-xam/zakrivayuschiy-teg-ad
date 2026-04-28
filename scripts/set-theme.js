@@ -42,24 +42,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- МОДАЛКА (ПРОСТО ДОБАВИЛ СЮДА) ---
+  // --- МОДАЛКА ---
   const modal = document.querySelector('#modal');
   const saveButton = document.querySelector('.save__button');
   const closeButton = document.querySelector('.popup__close-btn');
 
-  if (saveButton && modal) {
-    saveButton.addEventListener('click', () => {
-      modal.showModal();
-    });
-  }
+  // if (saveButton && modal) {
+  //   saveButton.addEventListener('click', () => {
+  //     modal.showModal();
+  //   });
+  // }
 
-  if (closeButton && modal) {
-    closeButton.addEventListener('click', () => {
-      modal.close();
-    });
-  }
+  // if (closeButton && modal) {
+  //   closeButton.addEventListener('click', () => {
+  //     modal.close();
+  //   });
+  // }
+  saveButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    modal.showModal();
+  });
+
+  closeButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    modal.close();
+  });
+
 });
 
-document.querySelector('button').addEventListener('click', function(event){
-  event.preventDefault();
-});
